@@ -10,7 +10,7 @@ PROMPT = (
 
 
 async def handler(inp, ctx):
-    summary = await ctx.call_tool("acme_crm", "health", {})
+    summary = await ctx.call_tool("acme_crm", "health_summary", {})
     result = await ctx.agent_turn(f"Write the daily ACME sample brief from this data: {summary}")
     await ctx.post_to_slack(SLACK_CHANNEL, result["result_text"])
     await ctx.sleep("cooldown", timedelta(seconds=1))
